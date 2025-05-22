@@ -10765,4 +10765,7 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+}
+.nav-link {
+  color: white;
 }/*# sourceMappingURL=main.css.map */
