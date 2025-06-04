@@ -6,7 +6,7 @@ const inputMail = document.getElementById("EmailInput");
 const inputPassword = document.getElementById("passwordInput");
 const inputValidationPassword = document.getElementById("validatePasswordInput");
 const btnValidation = document.getElementById("btn-validation-inscription");
-inputValidationPassword
+const passwordConfirmeOk = validateConfirmationPassword(inputPassword, inputValidationPassword);
 
 inputNom.addEventListener('keyup', validateForm);
 inputPreNom.addEventListener('keyup', validateForm);
@@ -20,8 +20,10 @@ function validateForm(){
     const nomOk = validateRequired(inputNom);
     const prenomOk = validateRequired(inputPreNom);
     const mailOk = validateMail(inputMail);
+    const passwordOk = validatePassword(inputPassword,);
+    const passwordConfirmeOk = validateConfirmationPassword(inputPassword, inputValidationPassword);
 
-    if(nomOk && prenomOk && mailOk){
+    if(nomOk && prenomOk && mailOk && passwordOk && passwordConfirmeOk){
         btnValidation.disabled = false;
     }
     else{
@@ -29,6 +31,39 @@ function validateForm(){
     }
 
 }
+
+function validateConfirmationPassword(inputPwd, inputConfirmPwd){
+    if(inputPwd.value == inputConfirmPwd.value){
+        inputConfirmPwd.classList.add("is-valid");
+        inputConfirmPwd.classList.remove("is-invalid");
+        return true;
+    }
+    else{
+        inputConfirmPwd.classList.add("is-invalid");
+        inputConfirmPwd.classList.add("is-valid");
+        return false;
+    }
+
+}
+
+function validatePassword(input){
+    // Définir mon regex
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/;
+    const passwordUser = input.value;
+    if(passwordUser.match(passwordRegex)){
+        input.classList.add("is-valid");
+        input.classList.remove("is-invalid");
+        return true;
+    }
+    else{
+        input.classList.remove("is-valid");
+        input.classList.add("is-invalid");
+        return false; 
+        
+    }
+
+    }
+
 
 function validateMail(input){
     // Définir mon regex
