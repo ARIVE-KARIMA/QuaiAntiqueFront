@@ -54,6 +54,9 @@ const routeEvent = (event) => {
   window.history.pushState({}, "", event.target.href);
   // Chargement du contenu de la nouvelle page
   LoadContentPage();
+
+  // Afficher et masquer les élément en fonction du rôle
+  showAndHideElementsForRoles();
 };
 
 // Gestion de l'événement de retour en arrière dans l'historique du navigateur
